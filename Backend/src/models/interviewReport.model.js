@@ -79,12 +79,6 @@ const interviewReportSchema = mongoose.Schema({
         min: 0,
         max: 100
     },
-    get matchScore() {
-        return this._matchScore;
-    },
-    set matchScore(value) {
-        this._matchScore = value;
-    },
     technicalQuestion: [technicalQuestionSchema],
     behavioralQuestion: [behavioralQuestionSchema],
     skillGaps: [skillGapsSchema],
