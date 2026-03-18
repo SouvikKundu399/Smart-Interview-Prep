@@ -1,4 +1,5 @@
-import { pdfParse } from "pdf-parse";
+import { PDFParse } from 'pdf-parse';
+
 import {
     generateInterviewReport,
     generateResumePdf

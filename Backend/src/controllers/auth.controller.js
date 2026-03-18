@@ -26,13 +26,13 @@ const registerUserController = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10)
 
 
-    const newUser = await User.create({
+    const user = await User.create({
         username,
         email,
         password: hashedPassword
     })
 
-    const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET, { expiresIn: "1d" })
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "1d" })
 
     res.cookie("token", token, {
         httpOnly: true,
@@ -40,7 +40,14 @@ const registerUserController = async (req, res) => {
         sameSite: "lax",
         maxAge: 24 * 60 * 60 * 1000
     })
-    res.status(201).json({ message: "User registered successfully" })
+    res.status(201).json({
+        message: "User registered successfully",
+        user: {
+            id: user._id,
+            username: user.username,
+            email: user.email
+        }
+    })
 
 }
 
@@ -78,7 +85,14 @@ const loginUserController = async (req, res) => {
         maxAge: 24 * 60 * 60 * 1000
     })
 
-    res.status(200).json({ message: "User logged in successfully" })
+    res.status(200).json({
+        message: "User loggedIn successfully.",
+        user: {
+            id: user._id,
+            username: user.username,
+            email: user.email
+        }
+    })
 }
 
 

@@ -6,7 +6,7 @@ import {
     generateResumePdfController 
 } from "../controllers/interview.controller.js";
 import isAuthenticatedUser from "../middlewares/auth.middleware.js";
-import { upload } from "../middlewares/multer.middleware.js";
+import upload from "../middlewares/file.middleware.js";
 
 const interviewRouter = Router()
 
